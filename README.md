@@ -1,40 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Full-Stack E-Commerce Catalog
 
-## Getting Started
+A full-stack e-commerce web application built with Next.js, demonstrating Server-Side Rendering (SSR), robust authentication, and secure database management. 
 
-First, run the development server:
+🎥 **[Watch the Project Demonstration Video](https://drive.google.com/file/d/1esPX7i4tieMUjHFwQ7bcgWHgERLc8jlV/view?usp=sharing)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tech Stack
+
+* **Framework:** Next.js (Pages Router)
+* **Styling:** Tailwind CSS
+* **Database:** PostgreSQL (Dockerized)
+* **ORM:** Prisma
+* **Authentication:** NextAuth.js (GitHub Provider)
+* **Validation:** Zod
+* **Containerization:** Docker & Docker Compose
+
+## ✨ Key Features
+
+* **Server-Side Rendering (SSR):** Product catalog and detail pages are pre-rendered on the server for optimal performance and SEO.
+* **Dynamic Pagination:** Efficient database-level pagination displaying 12 items per page with functional "Next/Previous" controls.
+* **Search Functionality:** Case-insensitive search that filters products by both name and description simultaneously.
+* **Secure Authentication:** User login handled securely via NextAuth.js using GitHub OAuth.
+* **Protected Routes:** Next.js Edge Middleware protects the `/cart` route, automatically redirecting unauthenticated users to the login screen.
+* **Shopping Cart API:** Custom REST API for managing cart items, featuring strict payload validation using Zod to ensure data integrity before database insertion.
+* **Relational Database:** A fully structured PostgreSQL database managed via Prisma, featuring relational mapping between Users, Products, and Cart Items.
+
+## 🛠️ Getting Started
+
+### Prerequisites
+* Node.js (v18+)
+* Docker Desktop (running)
+* A GitHub OAuth App (for NextAuth credentials)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git)
+   cd YOUR-REPO-NAME
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies:**
+```bash
+npm install
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+3. **Set up Environment Variables:**
+* Rename `.env.example` to `.env`.
+* Fill in your GitHub Client ID, Client Secret, NextAuth URL, and Secret.
+* Ensure your `DATABASE_URL` is set to connect to the Docker container.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+4. **Start the Database (Docker):**
+```bash
+docker-compose up -d
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Initialize the Database:**
+```bash
+npx prisma generate
+npx prisma db push
+npx prisma db seed
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+6. **Run the Development Server:**
+```bash
+npm run dev
+
+```
+
+
+7. **Open the App:**
+Navigate to http://localhost:3000 in your browser.
+
+## 🛑 Stopping the Application
+
+To shut down the Next.js server, press `Ctrl + C` in your terminal. To stop the database container, run:
+
+```bash
+docker-compose down
+
+```
+
+```
+
+Once you have saved that file, you can run these final commands in your VS Code terminal to send the update to GitHub:
+
+```bash
+git add README.md
+git commit -m "Update README with demonstration video link"
+git push
+
+```
+
